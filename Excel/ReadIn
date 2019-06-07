@@ -1,0 +1,18 @@
+## Starter file to read in specific excel files ##
+## input: two column excel sheed starting at A2,B2 with col names "MD5, Hash"
+## Not yet refactored, all hardcoded
+
+import pandas as pd
+
+df = pd.read_excel('Hash.xlsx', sheet_name='MD5', skiprows=1)
+
+print("Column headings:")
+print(df.columns)
+
+k = []
+
+for i in df['MD5']:
+    print(df['Name']  + " : " +df['MD5'] )
+    k.append(df['Name']+ df['MD5'])
+
+print(len(k))
