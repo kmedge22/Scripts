@@ -1,0 +1,24 @@
+import pandas as pd
+import os
+
+# ReadInFolder 
+# Go through each file in a given folder, locate excel files, record all data in the Names/Hashes columns to a 
+# master list
+
+masterList = []
+
+for (root, dirs, files) in os.walk("/Users/kedge/Desktop/SCripts/San4n6/"):
+    # print(root)
+    # print(dirs)
+    print(files)
+
+    for name in files:
+        # print(name)
+        if (not str(name).startswith("~")) and (str(name).endswith("xlsx")):
+            print(name)
+
+            df = pd.read_excel(name, sheet_name='MD5', skiprows=1)
+
+            for i in df['MD5']:
+                masterList.append(df['Name'] + " : "+ df['MD5'])
+# print(masterList)
