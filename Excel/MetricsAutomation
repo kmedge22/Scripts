@@ -1,0 +1,60 @@
+import pandas as pd
+from Metrics.Ticket import Ticket
+
+# Read in Excel File
+df = pd.read_excel("JuneMetrics.xlsx", sheet_name='Archer Search Report', skiprows=0)
+# print(df.columns)
+
+# local variables
+fields = []
+containmentTime=[]
+numOfColumns = len(df.columns)
+numOfRows = len(df['Event ID'])
+print(numOfRows)
+print(numOfColumns)
+ticketList = []
+
+# Add column names to the List fields
+def createColumns():
+    for i in range(len(df.columns)):
+        fields.append(str(df.columns[i]))
+        # print(df.columns[i])
+    return
+createColumns()
+
+
+# Create lists
+eventID = df[fields[0]]
+dateCreated = df[fields[1]]
+dateTimeTicketContained = df[fields[2]]
+dateTimeEscalatedToTier3 = df[fields[3]]
+dateTimeClosed = df[fields[4]]
+country = df[fields[5]]
+region = df[fields[6]]
+subRegion = df[fields[7]]
+securityCategory = df[fields[8]]
+subCategory = df[fields[9]]
+priority = df[fields[10]]
+incidentSummary = df[fields[11]]
+escalationOwner = df[fields[12]]
+requestType = df[fields[13]]
+responseTime = df[fields[14]]
+timeIncidentOccurred = df[fields[15]]
+
+
+# Create Ticket Objects for each event and incident recorded in Excel metrics
+def createTicket():
+    for i in range(numOfRows):
+        print(i)
+        newTicket = Ticket(eventID[i],dateCreated[i], dateTimeTicketContained[i], dateTimeEscalatedToTier3[i], dateTimeClosed[i],
+                           country[i], region[i], subRegion[i], securityCategory[i], subCategory[i],
+                           priority[i], incidentSummary[i], escalationOwner[i], requestType[i], responseTime[i],
+                           timeIncidentOccurred[i])
+        ticketList.append(newTicket)
+        # print(eventID[i])
+        # print(dateCreated[i])
+
+
+    # mytix = Ticket(df[str(df.columns[i])], )
+createTicket()
+print(len(ticketList))
