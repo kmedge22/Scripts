@@ -1,6 +1,7 @@
 # Encode binary into Base64 Using PowerShell
-# Save binary data outside a restricted environment, format it as certificate, and use native certutil.exe 
-# command to write out the binary file again
+# Save binary data outside a restricted environment, format it as certificate, strip the strings and save base64 back to 
+# it's binary content
+# use native certutil.exe command to write out the binary file again
 
 $raw = Get-Content -Path c:\nc.exe -Encoding Byte
 $b64 = [System.Convert]::ToBase64String($raw)
