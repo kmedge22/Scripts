@@ -1,5 +1,5 @@
 # Create document with malicious PDF for a phishing attack
-# Utilizes .NET objects in PDFSharp DLL
+# Utilizes .NET objects in PDFSharp DLL, C# interface, PSV2 and later
 # Running things inside of hta/document more often gives privliges
 
 Add-Type -Path C:\pdf\PdfSharp-WPF.dll
